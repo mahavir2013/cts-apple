@@ -1,6 +1,6 @@
 
 
-# JS-learn
+# JS-modules-demo
 
 
 
