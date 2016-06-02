@@ -6,4 +6,9 @@
 
 
 // a- module functionality
-app.a.doWork();
+//app.a.doWork();
+
+
+require(null,['js/a'],function(a){
+	a.doWork();
+});
