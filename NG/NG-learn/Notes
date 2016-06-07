@@ -1,0 +1,17 @@
+
+
+
+ how NG doing 2-way data-binding ?
+ 
+ NG-life=cycle
+ -------------
+ 
+  a. compilation-phase
+  
+  
+   -->  for every model property in scope(s) ,
+        angular will register 'watchers' functions which are read/write model when it becomes dirty.
+     
+   -->  all watchers are executed by 'digest-loop' provided by F.W. 
+   
+   -->  we can also resister  custom watchers also for model properties.
