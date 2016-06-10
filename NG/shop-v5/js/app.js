@@ -11,7 +11,7 @@
 		
 	// Service
 	storeMod.factory('storeService', function($http, $q) {
-		var url = "/products";
+		var url = "http://localhost:3000/api/products";
 		var service = {
 			loadAll : function() {
 				var defer = $q.defer();
