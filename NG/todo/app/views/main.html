@@ -13,8 +13,8 @@
   </form>
 
     <!-- Todos list -->
-  <div ui-sortable ng-model="todos">
-	  <p class="input-group" ng-repeat="todo in todos" style="padding:5px 10px; cursor: move;">
+  <div ui-sortable ng-model="todos" class="list-group">
+	  <p class="input-group" ng-repeat="todo in todos" style="padding:5px 10px; cursor: move;" >
 	    <span class="input-group-addon">
 	    	<input class="toggle" 
 	    	       type="checkbox" 
@@ -28,11 +28,19 @@
 	    </span>
 	  </p>
   </div>
-  
+ 
   <ul class="nav nav-pills">
-  	<li ng-class="{active:filter==='all'}"><a href="#/all">All</a></li>
-  	<li ng-class="{active:filter==='active'}"><a href="#/active">Active</a></li>
-  	<li ng-class="{active:filter==='completed'}"><a href="#/completed">Completed</a></li>
+  	<li ng-class="{active:status==='all'}"><a href="#/all">All</a></li>
+  	<li ng-class="{active:status==='active'}"><a href="#/active">Active</a></li>
+  	<li ng-class="{active:status==='completed'}"><a href="#/completed">Completed</a></li>
+  	<li><a><ng-pluralize count="todosLeft" 
+  	                     when="{
+  	                     '0':'No Items Left',
+  	                     '1':'One Item Left',
+  	                     'other':' {{todosLeft}} Items Left'
+  	                     }">
+  	        </ng-pluralize></span> </a></li>
   </ul>
+    
     
 </div>

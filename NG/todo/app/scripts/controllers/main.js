@@ -6,45 +6,16 @@
  * @description # MainCtrl Controller of the todoApp
  */
 
-angular.module('todoApp').controller('MainCtrl', function($scope, Todo,$routeParams) {
+angular.module('todoApp').controller('MainCtrl', function($scope, Todo,$filter,$routeParams) {
 
-	$scope.filter=$routeParams.filter||'all';
-	
-	//----------------------------------
-
-	var service = {
-		getFilteredTodos : function() {
-			if ($scope.filter === 'active') {
-				return this.getActiveTodos();
-			}
-			if ($scope.filter === 'completed') {
-				return this.getCompletedTodos();
-			}
-			return todos;
-		},
-		getActiveTodos: function () {
-			return todos.filter(function (todo) {
-				return !todo.completed;
-			});
-		},
-		getCompletedTodos: function () {
-			return todos.filter(function (todo) {
-				return todo.completed;
-			});
-		},
-	};
-	
-	
-	//-----------------------------------
+	$scope.status=$routeParams.filter||'all';
 	
 	var todos=[];
 	Todo.query(function(items){
 		todos=items;
-		$scope.todos = service.getFilteredTodos();
+		$scope.todos = $filter('todoFilter')(todos,$scope.status);
+		$scope.todosLeft=$filter('todoFilter')(todos,'active').length;
 	});
-
-	//-----------------------------------
-	
 	
 
 	$scope.title = '';
@@ -57,6 +28,7 @@ angular.module('todoApp').controller('MainCtrl', function($scope, Todo,$routePar
 			};
 			Todo.save(newTodo, function(todo) {
 				$scope.todos.push(todo);
+				filterService.getFilteredTodos();
 				$scope.title = '';
 			});
 		}
