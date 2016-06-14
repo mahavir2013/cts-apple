@@ -9,6 +9,8 @@
   },
   "libs": [
     "ecma5",
-    "ecma6"
-  ]
+    "ecma6",
+    "underscore"
+  ],
+  "ecmaVersion": 6
 }
