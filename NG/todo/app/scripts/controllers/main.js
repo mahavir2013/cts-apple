@@ -6,15 +6,18 @@
  * @description # MainCtrl Controller of the todoApp
  */
 
-angular.module('todoApp').controller('MainCtrl', function($scope, Todo,$filter,$routeParams) {
+angular.module('todoApp').controller('MainCtrl', function($scope,Todo,$filter,$routeParams,$location) {
 
 	$scope.status=$routeParams.filter||'all';
 	
 	var todos=[];
-	Todo.query(function(items){
+	Todo.query().$promise.then(function(items){
 		todos=items;
 		$scope.todos = $filter('todoFilter')(todos,$scope.status);
 		$scope.todosLeft=$filter('todoFilter')(todos,'active').length;
+	},function(reason){
+		console.log('need login..');
+		$location.path('login');
 	});
 	
 
