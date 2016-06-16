@@ -8,7 +8,7 @@
 
 angular.module('todoApp').controller('MainCtrl', function($scope,Todo,$filter,$routeParams,$location) {
 
-	$scope.status=$routeParams.filter||'all';
+	$scope.status=$routeParams.status||'all';
 	
 	var todos=[];
 	Todo.query().$promise.then(function(items){

@@ -17,7 +17,7 @@
 		<input ng-model="userCount">
 		<table class="table table-bordered table-condensed">
 			<tr ng-repeat="user in users">
-				<td>{{user.fname}}</td>
+				<td><input ng-model="user.fname"></td>
 				<td>{{user.lname}}</td>
 			</tr>
 		</table>
@@ -29,10 +29,17 @@
 	<script type="text/javascript">
 		var mod=angular.module('demo', []);
 		mod.controller('UserController', function($scope,$http) {
+			
 			$scope.userCount=10;
+			
 			$scope.$watch('userCount', function(newCount,oldCount) {
 				loadUsers(newCount);
 			});
+			
+			$scope.$watch('users',function(newArr,oldArr){
+				console.log('users modified...');
+			},true);
+			
 			function loadUsers(count){
 				$http.jsonp("http://www.filltext.com/?callback=JSON_CALLBACK&rows="+count+"&fname={firstName}&lname={lastName}")
 			    .success(function (data) {

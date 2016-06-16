@@ -17,7 +17,6 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.sortable',
-    'lbServices'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -25,7 +24,7 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/:filter', {
+      .when('/:status', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
